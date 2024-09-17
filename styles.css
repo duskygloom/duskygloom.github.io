@@ -90,6 +90,7 @@ body {
     cursor: pointer;
     margin: 0 0.6rem;
     visibility: hidden;
+    width: 0;
 }
 
 .content {
@@ -219,6 +220,10 @@ button:active, a:active {
     transform: scale(0.98);
 }
 
+button, a {
+    outline: none;
+}
+
 @keyframes glow-effect {
     0% {
         background-position: 100%;
@@ -253,13 +258,14 @@ button:active, a:active {
     box-shadow: 4px 4px 4px rgba(var(--shadow), 0.2);
 }
 
-@media (max-width: 665px) {
+@media (max-width: 630px) {
     .navbar {
         display: none;
     }
 
     .menu {
         visibility: visible;
+        width: max-content;
     }
 }
 
