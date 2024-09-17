@@ -2,13 +2,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <p id="text">
-        Under construction.
-        <br>
-        Probably will be forever.
-    </p>
+    <header class="header">
+        <a href="#" class="logo">Portfolio.</a>
+        <div class="menu">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"/></svg>
+        </div>
+        <nav class="navbar">
+            <a href="#" class="navbar-item">Home</a>
+            <a href="#" class="navbar-item">About</a>
+            <a href="#" class="navbar-item">Education</a>
+            <a href="#" class="navbar-item">Skills</a>
+            <a href="#" class="navbar-item">Contact</a>
+        </nav>
+    </header>
+    <section class="content">
+        <section class="left-content">
+            <div class="title">
+                Hi, I'm Linus
+            </div>
+            <div class="subtitle">
+                I do kernels.
+            </div>
+            <div class="body-text">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati harum aliquam possimus iure rerum labore facere, omnis pariatur mollitia voluptate deleniti. Quasi natus ab laborum, vero doloremque impedit et aut.
+            </div>
+            <div class="button-bar">
+                <button class="glowing-button" id="hire-button" type="button" onclick=spinPicture()>Hire Me</button>
+                <button class="glowing-button" id="talk-button" type="button" onclick=mirrorPicture()>Let's Talk</button>
+            </div>
+        </section>
+        <section class="right-content">
+            <img id="my-picture" src="assets/literally-me.gif" alt=":<">
+        </section>
+    </section>
+        
 </body>
+<script src="index.js"></script>
 </html>

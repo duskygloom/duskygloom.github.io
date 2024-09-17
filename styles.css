@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+    /* light theme */
+    /* --background: 240, 250, 250;
+    --foreground: 33, 33, 33;
+    --primary: 0, 128, 128;
+    --onprimary: 233, 232, 232;
+    --secondary: 185, 185, 222;
+    --shadow: 33, 33, 33; */
+    /* dark theme */
+    --background: 33, 33, 33;
+    --foreground: 240, 250, 250;
+    --primary: 0, 128, 128;
+    --onprimary: 233, 232, 232;
+    --secondary: 185, 185, 222;
+    --shadow: 72, 72, 72;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: rgb(72, 72, 72);
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header"
+        "content";
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    height: 4rem;
+    grid-area: header;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas:
+        "logo blank1 menu navbar";
+    background-color: rgb(var(--primary));
+    align-items: center;
+    box-shadow: 0 4px 4px rgba(var(--shadow), 0.2);
+}
+
+.logo {
+    grid-area: logo;
+    font-family: 'Cabin', sans-serif;
+    text-decoration: none;
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin: 0 1rem;
+    color: rgb(var(--onprimary));
+}
+
+.navbar {
+    grid-area: navbar;
+    justify-self: end;
+    align-content: center;
+    margin: 0 0.6rem;
+}
+
+.navbar-item {
+    margin: 0 0.6rem;
+    font-family: 'Cabin', sans-serif;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: rgb(var(--onprimary));
+    font-weight: 600;
+}
+
+.logo:hover, .navbar-item:hover {
+    background: radial-gradient(rgba(var(--onprimary)), rgba(var(--secondary)));
+    background-size: 200%;
+    animation: glow-effect 2s ease-out infinite;
+    color: transparent;
+    background-clip: text;
+}
+
+.navbar-item:active {
+    text-decoration: underline;
+}
+
+.menu {
+    grid-area: menu;
+    cursor: pointer;
+    margin: 0 0.6rem;
+    visibility: hidden;
+}
+
+.content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "left right";
+}
+
+.left-content {
+    grid-area: left;
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+        "title"
+        "subtitle"
+        "body-text"
+        "button-bar";
+    max-height: calc(100vh - 4rem);
+    align-content: center;
+}
+
+.title {
+    grid-area: title;
+    font-family: 'Cabin', sans-serif;
+    font-weight: bold;
+    font-size: 4rem;
+    color: rgb(var(--primary));
+    padding: 1rem;
+    text-shadow: 3px 2px 2px rgba(var(--foreground), 0.2);
+}
+
+.subtitle {
+    grid-area: subtitle;
+    font-family: 'Cabin', sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: rgb(var(--secondary));
+    padding: 1rem;
+    text-shadow: 2px 2px 2px rgba(var(--foreground), 0.2);
+    position: relative;
+    width: max-content;
+}
+
+.subtitle::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 2.8rem;
+    width: 6px;
+    background-color: rgba(var(--primary), 0.8);
+    animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.body-text {
+    grid-area: body-text;
+    max-height: auto;
+    overflow-y: hidden;
+    font-family: 'Cabin', sans-serif;
+    font-size: 1rem;
+    color: rgba(var(--foreground));
+    padding: 1rem;
+}
+
+.button-bar {
+    grid-area: button-bar;
+}
+
+.glowing-button {
+    background-color: rgba(var(--primary));
+    color: rgba(var(--onprimary));
+    height: 2.2rem;
+    width: 7rem;
+    border: none;
+    border-radius: 1.1rem;
+    font-family: 'Cabin', sans-serif;
+    font-size: 1.2rem;
+    position: relative;
+    margin: 1rem 0;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.glowing-button::before {
+    content: '';
+    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background-size: 200%;
+    height: calc(2.2rem + 8px);
+    width: calc(7rem + 8px);
+    border-radius: calc(1.1rem + 4px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: -1;
+    animation: glow-effect 5s ease-out infinite;
+}
+
+.glowing-button::after {
+    content: '';
+    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background-size: 200%;
+    height: calc(2.2rem + 8px);
+    width: calc(7rem + 8px);
+    border-radius: calc(1.1rem + 4px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: -2;
+    animation: glow-effect 5s ease-out infinite;
+    filter: blur(5px);
+}
+
+.glowing-button:hover {
+    font-weight: bold;
+    background-color: transparent;
+}
+
+button:active, a:active {
+    transform: scale(0.98);
+}
+
+@keyframes glow-effect {
+    0% {
+        background-position: 100%;
+    }
+    50% {
+        background-position: 200%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+#hire-button {
+    grid-area: hire-button;
+}
+
+#talk-button {
+    grid-area: talk-button;
+}
+
+.right-content {
+    grid-area: right;
+    height: calc(100vh - 4rem);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+#my-picture {
+    width: 46vmin;
+    border-radius: 1rem;
+    box-shadow: 4px 4px 4px rgba(var(--shadow), 0.2);
+}
+
+@media (max-width: 665px) {
+    .navbar {
+        display: none;
+    }
+
+    .menu {
+        visibility: visible;
+    }
+}
+
+@media (max-width: 770px) {
+    .content {
+        grid-area: content;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "left";
+    }
+
+    .right-content {
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.25;
+    }
+
+    #my-picture {
+        width: 60vmin;
+        box-shadow: none;
+    }
+}
