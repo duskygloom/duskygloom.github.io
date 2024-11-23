@@ -1,13 +1,29 @@
-function spinPicture() {
-    // let element = document.getElementById('yay-text');
-    // // element.hidden = !element.hidden;
-    // element = document.getElementById('my-picture');
-    // element.style = "transform: rotate(1440deg); transition-duration: 2000ms"
+var hobbiesData = {
+    "all": [
+        "IoT",
+        "Bots",
+        "Crawlers",
+        "Websites",
+        "Softwares",
+        "Compilers",
+    ],
+
+    "counter": 0,
+};
+
+function animateHobby() {
+    var hobbySpan = document.getElementById("hobby");
+    var hobbies = hobbiesData["all"];
+    var counter = hobbiesData["counter"];
+    hobbySpan.textContent = hobbies[counter];
+    counter = (counter + 1) % hobbies.length;
+    hobbiesData["counter"] = counter;
 }
 
-function mirrorPicture() {
-    // let element = document.getElementById('yay-text');
-    // // element.hidden = !element.hidden;
-    // element = document.getElementById('my-picture');
-    // element.style = "transform: rotate(1440deg); transition-duration: 2000ms"
+function toggleNavlist() {
+    var navlist = document.getElementById("navlist");
+    const display = navlist.style.display;
+    navlist.style.display = display === "none" || !display
+        ? "flex"
+        : "none";
 }

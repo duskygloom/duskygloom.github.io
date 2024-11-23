@@ -2,53 +2,61 @@
 
 :root {
     /* light theme */
-    /* --background: 240, 250, 250;
+    --background: 240, 250, 250;
     --foreground: 33, 33, 33;
     --primary: 0, 128, 128;
     --onprimary: 233, 232, 232;
     --secondary: 185, 185, 222;
-    --shadow: 33, 33, 33; */
-    /* dark theme */
-    --background: 33, 33, 33;
-    --foreground: 240, 250, 250;
-    --primary: 0, 128, 128;
-    --onprimary: 233, 232, 232;
-    --secondary: 185, 185, 222;
-    --shadow: 72, 72, 72;
+    --shadow: 33, 33, 33;
+    --title: var(--primary);
+    --header: var(--primary);
+    --subtitle: var(--secondary);
 }
 
 * {
     margin: 0;
     padding: 0;
-    color: rgb(72, 72, 72);
 }
 
 body {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    grid-template-areas:
-        "header"
-        "content";
+    display: flex;
+    flex-direction: column;
     background-color: rgb(var(--background));
     color: rgb(var(--foreground));
 }
 
-.header {
+#header {
     position: sticky;
     top: 0;
     height: 4rem;
-    grid-area: header;
-    display: grid;
-    grid-template-columns: auto 1fr auto auto;
-    grid-template-areas:
-        "logo blank1 menu navbar";
-    background-color: rgb(var(--primary));
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(var(--header), 0.96);
     align-items: center;
     box-shadow: 0 4px 4px rgba(var(--shadow), 0.2);
 }
 
+#content {
+    display: flex;
+}
+
+#left {
+    display: flex;
+    flex-direction: column;
+    padding-right: 16;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+#right {
+    height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
 .logo {
-    grid-area: logo;
     font-family: 'Cabin', sans-serif;
     text-decoration: none;
     font-size: 2.4rem;
@@ -58,82 +66,94 @@ body {
 }
 
 .navbar {
-    grid-area: navbar;
     justify-self: end;
     align-content: center;
     margin: 0 0.6rem;
 }
 
-.navbar-item {
-    margin: 0 0.6rem;
+.navlist {
+    background-color: rgba(var(--header), 0.96);
+    display: none;
+    position: absolute;
+    width: 100vw;
+    top: 4rem;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.navbarItem {
+    margin: 0.2rem 0.6rem;
+    padding: 0.6rem 0;
     font-family: 'Cabin', sans-serif;
     font-size: 1.2rem;
     text-decoration: none;
     color: rgb(var(--onprimary));
     font-weight: 600;
+    text-align: center;
 }
 
-.logo:hover, .navbar-item:hover {
+.logo:hover, .navbarItem:hover {
     background: radial-gradient(rgba(var(--onprimary)), rgba(var(--secondary)));
     background-size: 200%;
-    animation: glow-effect 2s ease-out infinite;
+    animation: glowEffect 2s ease-out infinite;
     color: transparent;
     background-clip: text;
 }
 
-.navbar-item:active {
+.navbarItem:active {
     text-decoration: underline;
 }
 
 .menu {
-    grid-area: menu;
     cursor: pointer;
-    margin: 0 0.6rem;
-    visibility: hidden;
-    width: 0;
+    margin: 0 1rem;
+    display: none;
 }
 
-.content {
-    grid-area: content;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-        "left right";
+.menuIcon {
+    fill: rgb(var(--onprimary));
+    height: 30;
 }
 
-.left-content {
-    grid-area: left;
-    display: grid;
-    grid-template-rows: repeat(4, auto);
-    grid-template-areas:
-        "title"
-        "subtitle"
-        "body-text"
-        "button-bar";
-    max-height: calc(100vh - 4rem);
-    align-content: center;
+.menuIcon:hover {
+    transform: scale(1.06);
+}
+
+.menuIcon:active {
+    transform: scale(1.02);
+}
+
+.buttonRow {
+    display: flex;
+    padding-top: 60;
 }
 
 .title {
-    grid-area: title;
     font-family: 'Cabin', sans-serif;
     font-weight: bold;
     font-size: 4rem;
-    color: rgb(var(--primary));
+    color: rgb(var(--title));
     padding: 1rem;
     text-shadow: 3px 2px 2px rgba(var(--foreground), 0.2);
 }
 
 .subtitle {
-    grid-area: subtitle;
     font-family: 'Cabin', sans-serif;
     font-weight: bold;
     font-size: 2.5rem;
-    color: rgb(var(--secondary));
+    color: rgb(var(--subtitle));
     padding: 1rem;
     text-shadow: 2px 2px 2px rgba(var(--foreground), 0.2);
     position: relative;
     width: max-content;
+}
+
+#hobby {
+    font-family: 'Cabin', sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: rgb(var(--title));
+    text-shadow: 2px 2px 2px rgba(var(--foreground), 0.2);
 }
 
 .subtitle::before {
@@ -151,69 +171,61 @@ body {
     100% { opacity: 1; }
 }
 
-.body-text {
-    grid-area: body-text;
-    max-height: auto;
-    overflow-y: hidden;
-    font-family: 'Cabin', sans-serif;
-    font-size: 1rem;
-    color: rgba(var(--foreground));
-    padding: 1rem;
+.contactIcon {
+    padding-top: 7;
+    height: 1.6rem;
+    fill: rgb(var(--background));
 }
 
-.button-bar {
-    grid-area: button-bar;
-}
-
-.glowing-button {
+.glowingButton {
     background-color: rgba(var(--primary));
     color: rgba(var(--onprimary));
-    height: 2.2rem;
-    width: 7rem;
+    width: 2.4rem;
+    height: 2.4rem;
     border: none;
-    border-radius: 1.1rem;
+    border-radius: 1.2rem;
     font-family: 'Cabin', sans-serif;
-    font-size: 1.2rem;
+    text-align: center;
     position: relative;
-    margin: 1rem 0;
-    margin-left: 1rem;
+    margin: 1rem 0 1rem 1rem;
     cursor: pointer;
+    justify-self: center;
 }
 
-.glowing-button::before {
+.glowingButton::before {
     content: '';
     background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
     background-size: 200%;
-    height: calc(2.2rem + 8px);
-    width: calc(7rem + 8px);
-    border-radius: calc(1.1rem + 4px);
+    height: calc(2.4rem + 8px);
+    width: calc(2.4rem + 8px);
+    border-radius: calc(1.2rem + 4px);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
     z-index: -1;
-    animation: glow-effect 5s ease-out infinite;
+    animation: glowEffect 5s ease-out infinite;
 }
 
-.glowing-button::after {
+.glowingButton::after {
     content: '';
     background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
     background-size: 200%;
-    height: calc(2.2rem + 8px);
-    width: calc(7rem + 8px);
-    border-radius: calc(1.1rem + 4px);
+    height: calc(2.4rem + 8px);
+    width: calc(2.4rem + 8px);
+    border-radius: calc(1.2rem + 4px);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
     z-index: -2;
-    animation: glow-effect 5s ease-out infinite;
+    animation: glowEffect 5s ease-out infinite;
     filter: blur(5px);
 }
 
-.glowing-button:hover {
+.glowingButton:hover {
     font-weight: bold;
-    background-color: transparent;
+    background-color: rgb(var(--secondary));
 }
 
 button:active, a:active {
@@ -222,9 +234,10 @@ button:active, a:active {
 
 button, a {
     outline: none;
+    text-decoration: none;
 }
 
-@keyframes glow-effect {
+@keyframes glowEffect {
     0% {
         background-position: 100%;
     }
@@ -236,49 +249,32 @@ button, a {
     }
 }
 
-#hire-button {
-    grid-area: hire-button;
-}
-
-#talk-button {
-    grid-area: talk-button;
-}
-
-.right-content {
-    grid-area: right;
-    height: calc(100vh - 4rem);
-    display: grid;
-    justify-content: center;
-    align-content: center;
-}
-
-#my-picture {
+.centralImage {
     width: 46vmin;
     border-radius: 1rem;
     box-shadow: 4px 4px 4px rgba(var(--shadow), 0.2);
+    transform: translate(0%, 2rem);
 }
 
-@media (max-width: 630px) {
+@media (max-width: 615px) {
     .navbar {
         display: none;
     }
 
     .menu {
-        visibility: visible;
+        display: block;
         width: max-content;
     }
 }
 
 @media (max-width: 770px) {
-    .content {
-        grid-area: content;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "left";
+    #left {
+        position: absolute;
+        top: calc(50% + 2rem);
+        transform: translate(0%, calc(-50% - 0.4rem));
     }
 
-    .right-content {
+    #right {
         position: absolute;
         z-index: -1;
         top: 50%;
@@ -287,7 +283,7 @@ button, a {
         opacity: 0.25;
     }
 
-    #my-picture {
+    .centralImage {
         width: 60vmin;
         box-shadow: none;
     }
