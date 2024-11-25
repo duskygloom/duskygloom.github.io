@@ -30,7 +30,7 @@ function animateMarker() {
     const vh = window.outerHeight;
     const headerSize = document.getElementById('header').clientHeight;
     const cardSize = vh - headerSize;
-    const index = parseInt(window.scrollY / cardSize);
+    const index = parseInt(Math.round(window.scrollY / cardSize));
     const marker = document.getElementById('marker');
     var dots = marker.getElementsByTagName('li');
     console.log(`${vh} ${headerSize} ${cardSize} ${window.scrollY} ${index}`);
