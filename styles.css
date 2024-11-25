@@ -16,6 +16,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -23,37 +24,128 @@ body {
     flex-direction: column;
     background-color: rgb(var(--background));
     color: rgb(var(--foreground));
+    scrollbar-width: none;
+    /* overflow-x: hidden; */
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 #header {
     position: sticky;
     top: 0;
     height: 4rem;
+    width: 100vw;
     display: flex;
-    justify-content: space-between;
-    background-color: rgba(var(--header), 0.96);
     align-items: center;
+    justify-content: space-between;
+    background-color: rgba(var(--header), 1);
     box-shadow: 0 4px 4px rgba(var(--shadow), 0.2);
 }
 
 #content {
     display: flex;
+    align-items: center;
+    width: 100vw;
+    height: calc(100vh - 4rem);
+    position: fixed;
+    top: 4rem;
+}
+
+#verticalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    min-height: calc(100vh - 4rem);
+    top: 4rem;
 }
 
 #left {
     display: flex;
     flex-direction: column;
-    padding-right: 16;
     justify-content: center;
-    flex-grow: 1;
+    height: calc(100vh - 4rem);
+    width: 50vw;
 }
 
 #right {
-    height: calc(100vh - 4rem);
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    height: calc(100vh - 4rem);
+    width: 50vw;
+}
+
+#center {
+    display: flex;
+    flex-direction: column;
+}
+
+.expandedCard {
+    flex-direction: column;
+    background-color: rgba(var(--primary), 0.96);
+    height: calc(100vh - 4rem);
+    width: 100vw;
+    position: sticky;
+    top: 4rem;
+    padding: 0 1rem;
+}
+
+#marker {
+    color: #a5a5a5;
+    font-size: 2rem;
+    line-height: 1.4rem;
+    position: fixed;
+    z-index: 2;
+    top: 50vh;
+    transform: translate(0, -50%);
+    right: 1rem;
+}
+
+#center td, #center th, .eduCaption {
+    padding: 0.6rem;
+    font-size: 1.4rem;
+    font-family: 'Cabin', sans-serif;
+    color: rgb(var(--onprimary));
+    text-shadow: 0 2px 2px rgba(var(--shadow), 0.2);
+}
+
+#center th, .eduCaption {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.leftShifted {
+    padding-right: 3rem;
+}
+
+.eduCaption {
+    text-align: center;
+    margin: 1rem;
+}
+
+.key {
+    font-weight: bold;
+    width: calc(25vw - 1rem);
+}
+
+.value {
+    width: calc(75vw - 1rem);
+}
+
+.iconText {
+    display: flex;
     align-items: center;
-    flex-grow: 1;
+}
+
+.iconText .languageIcon {
+    margin-right: 1rem;
+}
+
+.languageIcon {
+    height: 3.6rem;
 }
 
 .logo {
@@ -72,9 +164,9 @@ body {
 }
 
 .navlist {
-    background-color: rgba(var(--header), 0.96);
+    background-color: rgba(var(--header), 0.9);
     display: none;
-    position: absolute;
+    position: fixed;
     width: 100vw;
     top: 4rem;
     flex-direction: column;
@@ -92,7 +184,7 @@ body {
     text-align: center;
 }
 
-.logo:hover, .navbarItem:hover {
+.logo:hover, .navbarItem:hover, .currentTab {
     background: radial-gradient(rgba(var(--onprimary)), rgba(var(--secondary)));
     background-size: 200%;
     animation: glowEffect 2s ease-out infinite;
@@ -112,7 +204,7 @@ body {
 
 .menuIcon {
     fill: rgb(var(--onprimary));
-    height: 30;
+    height: 30px;
 }
 
 .menuIcon:hover {
@@ -125,7 +217,8 @@ body {
 
 .buttonRow {
     display: flex;
-    padding-top: 60;
+    align-items: center;
+    margin: 3rem 0 1rem 0.6rem;
 }
 
 .title {
@@ -172,27 +265,58 @@ body {
 }
 
 .contactIcon {
-    padding-top: 7;
     height: 1.6rem;
     fill: rgb(var(--background));
 }
 
-.glowingButton {
+.bigContactIcon {
+    height: 6rem;
+    fill: rgb(var(--background));
+}
+
+.smallMargin {
+    margin: 1.4rem;
+}
+
+.bigMargin {
+    margin: 2rem;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.eduIcon {
+    height: 16rem;
+    width: 16rem;
+    object-fit: cover;
+    border-radius: 8rem;
+}
+
+.middleCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contactCard {
+    display: flex;
+    flex-direction: row;
+}
+
+.smallGlowingButton {
     background-color: rgba(var(--primary));
     color: rgba(var(--onprimary));
     width: 2.4rem;
     height: 2.4rem;
     border: none;
     border-radius: 1.2rem;
-    font-family: 'Cabin', sans-serif;
-    text-align: center;
+    margin: 0 0.6rem;
     position: relative;
-    margin: 1rem 0 1rem 1rem;
     cursor: pointer;
-    justify-self: center;
 }
 
-.glowingButton::before {
+.smallGlowingButton::before {
     content: '';
     background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
     background-size: 200%;
@@ -207,7 +331,7 @@ body {
     animation: glowEffect 5s ease-out infinite;
 }
 
-.glowingButton::after {
+.smallGlowingButton::after {
     content: '';
     background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
     background-size: 200%;
@@ -223,7 +347,92 @@ body {
     filter: blur(5px);
 }
 
-.glowingButton:hover {
+.bigGlowingButton {
+    background-color: rgba(var(--primary));
+    color: rgba(var(--onprimary));
+    width: 8rem;
+    height: 8rem;
+    border: none;
+    border-radius: 4rem;
+    position: relative;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.bigGlowingButton::before {
+    content: '';
+    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background-size: 200%;
+    height: calc(8rem + 24px);
+    width: calc(8rem + 24px);
+    border-radius: calc(4rem + 12px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: -1;
+    animation: glowEffect 5s ease-out infinite;
+}
+
+.bigGlowingButton::after {
+    content: '';
+    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background-size: 200%;
+    height: calc(8rem + 24px);
+    width: calc(8rem + 24px);
+    border-radius: calc(4rem + 12px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: -2;
+    animation: glowEffect 5s ease-out infinite;
+    filter: blur(5px);
+}
+
+.hugeGlowingButton {
+    background-color: rgba(var(--primary));
+    color: rgba(var(--onprimary));
+    height: calc(16rem + 24px);
+    width: calc(16rem + 24px);
+    border-radius: calc(8rem + 12px);
+    border: none;
+    position: relative;
+    cursor: pointer;
+}
+
+.hugeGlowingButton::before {
+    content: '';
+    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background-size: 200%;
+    height: calc(16rem + 48px);
+    width: calc(16rem + 48px);
+    border-radius: calc(8rem + 24px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: -1;
+    animation: glowEffect 5s ease-out infinite;
+}
+
+.hugeGlowingButton::after {
+    content: '';
+    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background-size: 200%;
+    height: calc(16rem + 48px);
+    width: calc(16rem + 48px);
+    border-radius: calc(8rem + 24px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: -2;
+    animation: glowEffect 5s ease-out infinite;
+    filter: blur(8px);
+}
+
+.glowingButton:hover, .bigGlowingButton:hover, .hugeGlowingButton:hover {
     font-weight: bold;
     background-color: rgb(var(--secondary));
 }
@@ -250,13 +459,12 @@ button, a {
 }
 
 .centralImage {
-    width: 46vmin;
+    width: 48vmin;
     border-radius: 1rem;
     box-shadow: 4px 4px 4px rgba(var(--shadow), 0.2);
-    transform: translate(0%, 2rem);
 }
 
-@media (max-width: 615px) {
+@media (max-width: 630px) {
     .navbar {
         display: none;
     }
@@ -265,13 +473,16 @@ button, a {
         display: block;
         width: max-content;
     }
+
+    .contactCard {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 770px) {
     #left {
-        position: absolute;
-        top: calc(50% + 2rem);
-        transform: translate(0%, calc(-50% - 0.4rem));
+        width: 100vw;
+        z-index: 1;
     }
 
     #right {

@@ -23,7 +23,18 @@ function animateHobby() {
 function toggleNavlist() {
     var navlist = document.getElementById("navlist");
     const display = navlist.style.display;
-    navlist.style.display = display === "none" || !display
-        ? "flex"
-        : "none";
+    navlist.style.display = display === "none" || !display ? "flex" : "none";
+}
+
+function animateMarker() {
+    const vh = window.innerHeight;
+    const rem = parseInt(getComputedStyle(document.documentElement).fontSize);
+    const cardSize = vh - 4*rem;
+    const index = parseInt(window.scrollY / cardSize);
+    const marker = document.getElementById('marker');
+    var dots = marker.getElementsByTagName('li');
+    for (var i = 0; i < dots.length; ++i) {
+        dots[i].style.color = '#a5a5a5';
+    }
+    dots[index].style.color = 'white';
 }

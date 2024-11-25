@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onscroll="animateMarker()" onload="animateMarker()">
+    <header id="header">
+        <a href="#" class="logo">Portfolio.</a>
+        <div class="menu" onclick="toggleNavlist()">
+            <svg class="menuIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
+        </div>
+        <nav class="navbar">
+            <a href="/index.html" class="navbarItem">Home</a>
+            <a href="/about.html" class="navbarItem">About</a>
+            <a href="/education.html" class="navbarItem currentTab">Education</a>
+            <a href="/skills.html" class="navbarItem">Skills</a>
+            <a href="/contact.html" class="navbarItem">Contact</a>
+        </nav>
+    </header>
+    <nav class="navlist" id="navlist">
+        <a href="/index.html" class="navbarItem">Home</a>
+        <a href="/about.html" class="navbarItem">About</a>
+        <a href="/education.html" class="navbarItem currentTab">Education</a>
+        <a href="/skills.html" class="navbarItem">Skills</a>
+        <a href="/contact.html" class="navbarItem">Contact</a>
+    </nav>
+    <div id="verticalContent">
+        <div id="center">
+            <ul id="marker">
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="expandedCard middleCenter">
+                <span class="eduCaption">
+                    Army Public School, Barrackpore
+                </span>
+                <a class="hugeGlowingButton middleCenter" title="School" href="#">
+                    <img class="bigContactIcon eduIcon" src="https://www.apsbkp.in/images/sld5.jpg" alt="">
+                </a>
+                <span class="eduCaption">
+                    Primary, Middle and High school
+                </span>
+            </div>
+            <div class="expandedCard middleCenter">
+                <span class="eduCaption">
+                    Visvabharati University
+                </span>
+                <a class="hugeGlowingButton middleCenter" title="College" href="#">
+                    <img class="bigContactIcon eduIcon" src="https://c7.alamy.com/zooms/9/bd546534c59f428f8d046f66bfbe6a86/2ht4p4r.jpg" alt="">
+                </a>
+                <span class="eduCaption">
+                    Bachelors in Computer Science
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>
