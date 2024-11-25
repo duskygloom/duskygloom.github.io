@@ -434,7 +434,7 @@ body {
     filter: blur(8px);
 }
 
-.glowingButton:hover, .bigGlowingButton:hover, .hugeGlowingButton:hover {
+.smallGlowingButton:hover, .bigGlowingButton:hover, .hugeGlowingButton:hover {
     font-weight: bold;
     background-color: rgb(var(--secondary));
 }
@@ -467,7 +467,7 @@ button, a {
 }
 
 @media (max-width: 430px) {
-    .expandedCard {
+    .expandedCard.edu {
         align-items: start;
         padding-left: 1.6rem;
     }
