@@ -41,7 +41,7 @@ body.index {
     position: sticky;
     top: 0;
     height: 4rem;
-    width: 100lvw;
+    width: 100vw;
     z-index: 2;
     display: flex;
     align-items: center;
@@ -53,8 +53,8 @@ body.index {
 #content {
     display: flex;
     align-items: center;
-    width: min(1080px, 100lvw);
-    height: calc(100lvh - 4rem);
+    width: min(1080px, 100vw);
+    height: calc(100vh - 4rem);
     position: fixed;
     top: 4rem;
 }
@@ -63,7 +63,7 @@ body.index {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: min(1080px, 100lvw);
+    width: min(1080px, 100vw);
     top: 4rem;
 }
 
@@ -71,7 +71,7 @@ body.index {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: calc(100lvh - 4rem);
+    height: calc(100vh - 4rem);
     width: 50%;
 }
 
@@ -79,7 +79,7 @@ body.index {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: calc(100lvh - 4rem);
+    height: calc(100vh - 4rem);
     width: 50%;
 }
 
@@ -91,7 +91,7 @@ body.index {
 
 .expandedCard {
     flex-direction: column;
-    height: calc(100lvh - 4rem);
+    height: calc(100vh - 4rem);
     background-color: rgba(var(--primary), 0.96);
     width: 100%;
     position: sticky;
@@ -188,7 +188,7 @@ body.index {
     background-color: rgba(var(--header), 0.9);
     display: none;
     position: fixed;
-    width: 100lvw;
+    width: 100vw;
     top: 4rem;
     flex-direction: column;
     z-index: 1;
@@ -541,7 +541,7 @@ button, a {
 
 @media (max-width: 770px) {
     #left {
-        width: 100lvw;
+        width: 100vw;
         z-index: 1;
     }
 
