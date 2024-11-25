@@ -488,6 +488,17 @@ button, a {
     .eduCaption {
         padding: 1.6rem 0;
     }
+}
+
+@media (max-width: 425px) {
+    .iconText span {
+        display: none;
+    }
+
+    .value:has(.iconText) {
+        flex-direction: row;
+        min-width: calc(75% - 1rem);
+    }
 
     #verticalContent tr {
         flex-direction: column;
@@ -499,17 +510,6 @@ button, a {
 
     #verticalContent .value {
         width: calc(100% - 2rem);
-    }
-}
-
-@media (max-width: 425px) {
-    .iconText span {
-        display: none;
-    }
-
-    .value:has(.iconText) {
-        flex-direction: row;
-        min-width: calc(75% - 1rem);
     }
 }
 
