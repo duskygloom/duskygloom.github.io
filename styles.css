@@ -22,10 +22,15 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: rgb(var(--background));
+    align-items: center;
+    background-color: rgb(var(--primary));
     color: rgb(var(--foreground));
     scrollbar-width: none;
     /* overflow-x: hidden; */
+}
+
+body.index {
+    background-color: rgb(var(--background));
 }
 
 ::-webkit-scrollbar {
@@ -48,7 +53,7 @@ body {
 #content {
     display: flex;
     align-items: center;
-    width: 100vw;
+    width: min(1080px, 100vw);
     height: calc(100vh - 4rem);
     position: fixed;
     top: 4rem;
@@ -58,8 +63,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
-    min-height: calc(100vh - 4rem);
+    width: min(1080px, 100vw);
     top: 4rem;
 }
 
@@ -68,7 +72,7 @@ body {
     flex-direction: column;
     justify-content: center;
     height: calc(100vh - 4rem);
-    width: 50vw;
+    width: 50%;
 }
 
 #right {
@@ -76,19 +80,20 @@ body {
     flex-direction: column;
     justify-content: center;
     height: calc(100vh - 4rem);
-    width: 50vw;
+    width: 50%;
 }
 
 #center {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .expandedCard {
     flex-direction: column;
-    background-color: rgba(var(--primary), 0.96);
     height: calc(100vh - 4rem);
-    width: 100vw;
+    background-color: rgba(var(--primary), 0.96);
+    width: 100%;
     position: sticky;
     top: 4rem;
     padding: 0 1rem;
@@ -105,6 +110,12 @@ body {
     right: 1rem;
 }
 
+#center table {
+    width: 100%;
+    margin-left: 1rem;
+    margin-right: 3rem;
+}
+
 #center td, #center th, .eduCaption {
     padding: 0.6rem;
     font-size: 1.4rem;
@@ -118,10 +129,6 @@ body {
     font-size: 2rem;
 }
 
-.leftShifted {
-    padding-right: 3rem;
-}
-
 .eduCaption {
     text-align: center;
     padding-top: 1.6rem;
@@ -129,12 +136,11 @@ body {
 }
 
 .key {
-    font-weight: bold;
-    width: calc(25vw - 1rem);
+    width: calc(25% - 1rem);
 }
 
 .value {
-    width: calc(75vw - 1rem);
+    width: calc(75% - 1rem);
 }
 
 .iconText {
@@ -463,10 +469,19 @@ button, a {
 .centralImage {
     width: 48vmin;
     border-radius: 1rem;
-    box-shadow: 4px 4px 4px rgba(var(--shadow), 0.2);
+    /* box-shadow: 4px 4px 4px rgba(var(--shadow), 0.2); */
 }
 
 @media (max-width: 430px) {
+    .iconText span {
+        display: none;
+    }
+
+    .iconText {
+        display: flex;
+        flex-direction: row;
+    }
+
     .expandedCard.edu {
         align-items: start;
         padding-left: 1.6rem;
