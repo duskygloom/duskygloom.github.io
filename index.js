@@ -27,7 +27,7 @@ function toggleNavlist() {
 }
 
 function animateMarker() {
-    const vh = window.innerHeight;
+    const vh = window.outerHeight;
     const rem = parseInt(getComputedStyle(document.documentElement).fontSize);
     const cardSize = vh - 4*rem;
     const index = parseInt(window.scrollY / cardSize + 1);
