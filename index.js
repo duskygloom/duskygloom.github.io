@@ -30,9 +30,10 @@ function animateMarker() {
     const vh = window.outerHeight;
     const rem = parseInt(getComputedStyle(document.documentElement).fontSize);
     const cardSize = vh - 4*rem;
-    const index = parseInt(window.scrollY / cardSize + 1);
+    const index = parseInt(window.scrollY / cardSize);
     const marker = document.getElementById('marker');
     var dots = marker.getElementsByTagName('li');
+    console.log(index);
     for (var i = 0; i < dots.length; ++i) {
         dots[i].style.color = '#a5a5a5';
     }

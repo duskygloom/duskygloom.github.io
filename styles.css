@@ -123,7 +123,8 @@ body {
 
 .eduCaption {
     text-align: center;
-    margin: 1rem;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
 }
 
 .key {
@@ -467,6 +468,7 @@ button, a {
 @media (max-width: 430px) {
     .expandedCard {
         align-items: start;
+        padding-left: 1.6rem;
     }
 
     .eduCaption {
