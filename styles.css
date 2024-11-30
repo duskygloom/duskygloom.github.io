@@ -28,7 +28,6 @@ body {
     background-color: rgb(var(--primary));
     color: rgb(var(--foreground));
     scrollbar-width: none;
-    /* overflow-x: hidden; */
 }
 
 body.index {
@@ -44,7 +43,7 @@ body.index {
     top: 0;
     height: 4rem;
     width: 100vw;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -106,7 +105,7 @@ body.index {
     font-size: 2rem;
     line-height: 1.4rem;
     position: fixed;
-    z-index: 2;
+    z-index: 1;
     top: 50vh;
     transform: translate(0, -50%);
     right: 1rem;
@@ -187,14 +186,14 @@ body.index {
     margin: 0 0.6rem;
 }
 
-.navlist {
+#navlist {
     background-color: rgba(var(--navlist), 0.90);
     display: none;
     position: fixed;
-    width: 100vw;
+    width: calc(100vw - 0.4rem);
     top: 4rem;
     flex-direction: column;
-    z-index: 1;
+    z-index: 2;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
@@ -419,9 +418,9 @@ body.index {
 .hugeGlowingButton {
     background-color: rgba(var(--primary));
     color: rgba(var(--onprimary));
-    height: calc(min(60vmin, 16rem) + 24px);
-    width: calc(min(60vmin, 16rem) + 24px);
-    border-radius: calc(min(30vmin, 8rem) + 12px);
+    height: calc(min(60vmin, 16rem) + 1rem);
+    width: calc(min(60vmin, 16rem) + 1rem);
+    border-radius: calc(min(30vmin, 8rem) + 0.5rem);
     border: none;
     position: relative;
     cursor: pointer;
@@ -431,9 +430,9 @@ body.index {
     content: '';
     background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
     background-size: 200%;
-    height: calc(min(60vmin, 16rem) + 48px);
-    width: calc(min(60vmin, 16rem) + 48px);
-    border-radius: calc(min(30vmin, 8rem) + 24px);
+    height: calc(min(60vmin, 16rem) + 2.4rem);
+    width: calc(min(60vmin, 16rem) + 2.4rem);
+    border-radius: calc(min(30vmin, 8rem) + 1.2rem);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -446,9 +445,9 @@ body.index {
     content: '';
     background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
     background-size: 200%;
-    height: calc(min(60vmin, 16rem) + 48px);
-    width: calc(min(60vmin, 16rem) + 48px);
-    border-radius: calc(min(30vmin, 8rem) + 24px);
+    height: calc(min(60vmin, 16rem) + 2.4rem);
+    width: calc(min(60vmin, 16rem) + 2.4rem);
+    border-radius: calc(min(30vmin, 8rem) + 1.2rem);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -481,6 +480,18 @@ button, a {
     }
     100% {
         background-position: 100%;
+    }
+}
+
+@keyframes pulseEffect {
+    0% {
+        background-size: 100%;
+    }
+    50% {
+        background-size: 150%;
+    }
+    100% {
+        background-size: 100%;
     }
 }
 
