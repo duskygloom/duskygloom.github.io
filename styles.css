@@ -1,18 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 
 :root {
-    /* light theme */
-    --background: 240, 250, 250;
-    --foreground: 33, 33, 33;
+    /* primary colors */
+    --primaryDarker: 4, 40, 40;
+    --primaryDark: 1, 75, 75;
     --primary: 0, 128, 128;
-    --onprimary: 233, 232, 232;
-    --secondary: 185, 185, 222;
-    --shadow: 33, 33, 33;
-    --title: var(--primary);
-    --header: var(--primary);
-    --navlist: 7, 109, 109;
-    --onheader: var(--onprimary);
-    --subtitle: var(--secondary);
+    --primaryShadow: 1, 110, 110;
+    --primaryLight: 66, 136, 136;
+    --primaryLighter: 210, 229, 229;
+    
+    --background: var(--primary);
+    --foreground: var(--primaryLighter);
+    --header: var(--primaryDark);
+    --shadow: var(--primaryDark);
+    --title: var(--primaryDarker);
+    --subtitle: var(--primaryLighter);
 }
 
 * {
@@ -25,9 +27,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(var(--primary));
+    background: linear-gradient(45deg, rgb(var(--background)), rgb(var(--header)));
     color: rgb(var(--foreground));
-    scrollbar-width: none;
+    background-attachment: fixed;
 }
 
 body.index {
@@ -47,7 +49,8 @@ body.index {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(var(--header), 1);
+    color: rgb(var(--subtitle));
+    background-color: rgb(var(--header));
     box-shadow: 0 4px 4px rgba(var(--shadow), 0.2);
 }
 
@@ -89,15 +92,26 @@ body.index {
     flex-direction: column;
     width: 100%;
 }
+/* 
+.scroller {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    height: calc(100vh - 4rem);
+}
+
+.scroller div {
+    scroll-snap-align: center;
+    min-height: calc(100vh - 4rem);
+} */
 
 .expandedCard {
     flex-direction: column;
-    height: calc(100vh - 4rem);
-    background-color: rgba(var(--primary), 0.96);
-    width: 100%;
-    position: sticky;
+    height: calc(100vh - 6rem);
+    background-color: rgba(var(--header), 0.2);
     top: 4rem;
     padding: 0 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
 }
 
 #marker {
@@ -121,7 +135,7 @@ body.index {
     padding: 0.6rem;
     font-size: 1.4rem;
     font-family: 'Cabin', sans-serif;
-    color: rgb(var(--onprimary));
+    color: rgb(var(--subtitle));
     text-shadow: 0 2px 2px rgba(var(--shadow), 0.2);
 }
 
@@ -142,6 +156,7 @@ body.index {
     display: flex;
     flex-direction: column;
     align-items: start;
+    justify-content: center;
     width: 30%;
 }
 
@@ -177,7 +192,7 @@ body.index {
     font-size: 2.4rem;
     font-weight: bold;
     margin: 0 1rem;
-    color: rgb(var(--onprimary));
+    color: rgb(var(--subtitle));
 }
 
 .navbar {
@@ -187,11 +202,17 @@ body.index {
 }
 
 #navlist {
-    background-color: rgba(var(--navlist), 0.90);
-    display: none;
+    background-color: rgba(var(--shadow), 0.96);
+    display: flex;
     position: fixed;
     width: 100vw;
-    top: 4rem;
+    height: 16rem;
+    top: -12rem;
+    transition-property: top;
+    transition-duration: 0.8s;
+    transition-behavior: ease-out;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     z-index: 2;
     border-bottom-left-radius: 1rem;
@@ -204,17 +225,21 @@ body.index {
     font-family: 'Cabin', sans-serif;
     font-size: 1.2rem;
     text-decoration: none;
-    color: rgb(var(--onprimary));
+    color: rgb(var(--subtitle));
     font-weight: 600;
     text-align: center;
 }
 
 .logo:hover, .navbarItem:hover, .currentTab {
-    background: radial-gradient(rgba(var(--onprimary)), rgba(var(--secondary)));
+    background: radial-gradient(rgb(var(--primaryLighter)), rgb(var(--primaryLight)));
     background-size: 200%;
-    animation: glowEffect 2s ease-out infinite;
+    animation: glowEffect 4s ease-out infinite;
     color: transparent;
     background-clip: text;
+}
+
+button:active, a:active {
+    transform: scale(0.98);
 }
 
 .navbarItem:active {
@@ -228,7 +253,7 @@ body.index {
 }
 
 .menuIcon {
-    fill: rgb(var(--onprimary));
+    fill: rgb(var(--subtitle));
     height: 30px;
 }
 
@@ -250,9 +275,14 @@ body.index {
     font-family: 'Cabin', sans-serif;
     font-weight: bold;
     font-size: 4rem;
-    color: rgb(var(--title));
+    /* color: rgb(var(--title)); */
+    color: transparent;
     padding: 1rem;
-    text-shadow: 3px 2px 2px rgba(var(--foreground), 0.2);
+    background: linear-gradient(90deg, rgb(var(--primaryDark)), rgb(var(--primaryDarker)));
+    background-size: 200%;
+    background-clip: text;
+    animation: glowEffect 4s ease-out infinite;
+    text-shadow: 3px 2px 2px rgba(var(--shadow), 0.2);
 }
 
 .subtitle {
@@ -261,7 +291,7 @@ body.index {
     font-size: 2.5rem;
     color: rgb(var(--subtitle));
     padding: 1rem;
-    text-shadow: 2px 2px 2px rgba(var(--foreground), 0.2);
+    text-shadow: 2px 2px 2px rgba(var(--shadow), 0.2);
     position: relative;
     width: max-content;
 }
@@ -270,8 +300,13 @@ body.index {
     font-family: 'Cabin', sans-serif;
     font-weight: bold;
     font-size: 2.5rem;
-    color: rgb(var(--title));
-    text-shadow: 2px 2px 2px rgba(var(--foreground), 0.2);
+    /* color: rgb(var(--title)); */
+    color: transparent;
+    background: linear-gradient(90deg, rgb(var(--primaryDark)), rgb(var(--primaryDarker)));
+    background-size: 200%;
+    background-clip: text;
+    animation: glowEffect 1s ease-out infinite;
+    text-shadow: 2px 2px 2px rgba(var(--shadow), 0.2);
 }
 
 .subtitle::before {
@@ -280,7 +315,7 @@ body.index {
     right: 0;
     height: 2.8rem;
     width: 6px;
-    background-color: rgba(var(--primary), 0.8);
+    background-color: rgba(var(--subtitle), 0.8);
     animation: blink 1s ease-in-out infinite;
 }
 
@@ -291,12 +326,12 @@ body.index {
 
 .contactIcon {
     height: 1.6rem;
-    fill: rgb(var(--background));
+    fill: rgb(var(--subtitle));
 }
 
 .bigContactIcon {
     height: 6rem;
-    fill: rgb(var(--background));
+    fill: rgb(var(--subtitle));
 }
 
 .smallMargin {
@@ -330,8 +365,7 @@ body.index {
 }
 
 .smallGlowingButton {
-    background-color: rgba(var(--primary));
-    color: rgba(var(--onprimary));
+    background-color: rgb(var(--background));
     width: 2.4rem;
     height: 2.4rem;
     border: none;
@@ -343,7 +377,7 @@ body.index {
 
 .smallGlowingButton::before {
     content: '';
-    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background: linear-gradient(90deg, rgb(var(--shadow)) 50%, rgb(var(--subtitle)) 50%);
     background-size: 200%;
     height: calc(2.4rem + 8px);
     width: calc(2.4rem + 8px);
@@ -358,7 +392,7 @@ body.index {
 
 .smallGlowingButton::after {
     content: '';
-    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background: linear-gradient(90deg, rgb(var(--shadow)) 50%, rgba(var(--subtitle)) 50%);
     background-size: 200%;
     height: calc(2.4rem + 8px);
     width: calc(2.4rem + 8px);
@@ -369,14 +403,13 @@ body.index {
     position: absolute;
     z-index: -2;
     animation: glowEffect 5s ease-out infinite;
-    filter: blur(5px);
+    filter: blur(0.2rem);
 }
 
 .bigGlowingButton {
-    background-color: rgba(var(--primary));
-    color: rgba(var(--onprimary));
     width: 8rem;
     height: 8rem;
+    background-color: rgb(var(--background));
     border: none;
     border-radius: 4rem;
     position: relative;
@@ -386,7 +419,8 @@ body.index {
 
 .bigGlowingButton::before {
     content: '';
-    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    /* background: rgb(var(--title)); */
+    background: linear-gradient(90deg, rgb(var(--shadow)) 50% , rgb(var(--subtitle)) 50%);
     background-size: 200%;
     height: calc(8rem + 24px);
     width: calc(8rem + 24px);
@@ -401,7 +435,7 @@ body.index {
 
 .bigGlowingButton::after {
     content: '';
-    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background: linear-gradient(90deg, rgb(var(--shadow)) 50%, rgb(var(--subtitle)) 50%);
     background-size: 200%;
     height: calc(8rem + 24px);
     width: calc(8rem + 24px);
@@ -412,12 +446,11 @@ body.index {
     position: absolute;
     z-index: -2;
     animation: glowEffect 5s ease-out infinite;
-    filter: blur(5px);
+    filter: blur(0.4rem);
 }
 
 .hugeGlowingButton {
-    background-color: rgba(var(--primary));
-    color: rgba(var(--onprimary));
+    background-color: rgba(var(--background));
     height: calc(min(60vmin, 16rem) + 1rem);
     width: calc(min(60vmin, 16rem) + 1rem);
     border-radius: calc(min(30vmin, 8rem) + 0.5rem);
@@ -428,7 +461,7 @@ body.index {
 
 .hugeGlowingButton::before {
     content: '';
-    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background: linear-gradient(90deg, rgba(var(--shadow)) 50%, rgba(var(--subtitle)) 50%);
     background-size: 200%;
     height: calc(min(60vmin, 16rem) + 2.4rem);
     width: calc(min(60vmin, 16rem) + 2.4rem);
@@ -443,7 +476,7 @@ body.index {
 
 .hugeGlowingButton::after {
     content: '';
-    background: conic-gradient(rgba(var(--primary)), rgba(var(--secondary)));
+    background: linear-gradient(90deg, rgba(var(--shadow)), rgba(var(--subtitle)));
     background-size: 200%;
     height: calc(min(60vmin, 16rem) + 2.4rem);
     width: calc(min(60vmin, 16rem) + 2.4rem);
@@ -454,16 +487,17 @@ body.index {
     position: absolute;
     z-index: -2;
     animation: glowEffect 5s ease-out infinite;
-    filter: blur(8px);
+    filter: blur(0.6rem);
 }
 
 .smallGlowingButton:hover, .bigGlowingButton:hover, .hugeGlowingButton:hover {
     font-weight: bold;
-    background-color: rgb(var(--secondary));
+    background: rgb(var(--primaryLight));
 }
 
-button:active, a:active {
-    transform: scale(0.98);
+.smallGlowingButton:active, .bigGlowingButton:active, .hugeGlowingButton:active {
+    transform: none;
+    background-color: rgb(var(--shadow));
 }
 
 button, a {
@@ -473,31 +507,23 @@ button, a {
 
 @keyframes glowEffect {
     0% {
-        background-position: 100%;
+        background-position: 0%;
     }
     50% {
-        background-position: 200%;
-    }
-    100% {
         background-position: 100%;
     }
-}
-
-@keyframes pulseEffect {
-    0% {
-        background-size: 100%;
-    }
-    50% {
-        background-size: 150%;
-    }
     100% {
-        background-size: 100%;
+        background-position: 0%;
     }
 }
 
 .centralImage {
-    width: 48vmin;
-    border-radius: 1rem;
+    width: min(950px, 48vmin);
+    height: min(950px, 48vmin);
+    border: 0.6rem solid rgb(var(--subtitle));
+    padding: 0.4rem;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 @media (max-width: 375px) {
@@ -567,11 +593,12 @@ button, a {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        opacity: 0.25;
+        opacity: 0.60;
     }
 
     .centralImage {
-        width: 60vmin;
+        width: min(400px, 80vmin);
+        height: min(400px, 80vmin);
         box-shadow: none;
     }
 }

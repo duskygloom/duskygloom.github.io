@@ -13,7 +13,7 @@ var hobbiesData = {
 
 function hideNavlist() {
     if (window.innerWidth > 630) {
-        document.getElementById('navlist').style.display = 'none';
+        document.getElementById('navlist').style.top = '-12rem';
     } 
 }
 
@@ -29,7 +29,19 @@ function animateHobby() {
 function toggleNavlist() {
     var navlist = document.getElementById("navlist");
     const display = navlist.style.display;
-    navlist.style.display = !display || display === "none" ? "flex" : "none";
+    // if (!display || display === 'none') {
+    //     navlist.style.display = 'flex';
+    //     navlist.style.top = '-12rem';
+    // }
+    console.log(display);
+    const top = navlist.style.top;
+    console.log(top);
+    if (top === '4rem') {
+        navlist.style.top = '-12rem';
+    } else {
+        navlist.style.top = '4rem';
+    }
+
 }
 
 function animateMarker() {
