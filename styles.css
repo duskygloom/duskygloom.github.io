@@ -5,7 +5,7 @@
     --primaryDarker: 4, 40, 40;
     --primaryDark: 1, 75, 75;
     --primary: 0, 128, 128;
-    --primaryShadow: 1, 110, 110;
+    --primaryShadow: 0, 98, 98;
     --primaryLight: 66, 136, 136;
     --primaryLighter: 210, 229, 229;
     
@@ -15,6 +15,8 @@
     --shadow: var(--primaryDark);
     --title: var(--primaryDarker);
     --subtitle: var(--primaryLighter);
+
+    --titleGradient: linear-gradient(90deg, rgb(var(--primaryDarker)), rgb(var(--primaryDark)));
 }
 
 * {
@@ -278,7 +280,7 @@ button:active, a:active {
     /* color: rgb(var(--title)); */
     color: transparent;
     padding: 1rem;
-    background: linear-gradient(90deg, rgb(var(--primaryDark)), rgb(var(--primaryDarker)));
+    background: var(--titleGradient);
     background-size: 200%;
     background-clip: text;
     animation: glowEffect 4s ease-out infinite;
@@ -302,7 +304,7 @@ button:active, a:active {
     font-size: 2.5rem;
     /* color: rgb(var(--title)); */
     color: transparent;
-    background: linear-gradient(90deg, rgb(var(--primaryDark)), rgb(var(--primaryDarker)));
+    background: var(--titleGradient);
     background-size: 200%;
     background-clip: text;
     animation: glowEffect 1s ease-out infinite;
@@ -365,7 +367,7 @@ button:active, a:active {
 }
 
 .smallGlowingButton {
-    background-color: rgb(var(--background));
+    background-color: rgb(var(--primaryShadow));
     width: 2.4rem;
     height: 2.4rem;
     border: none;
@@ -409,7 +411,7 @@ button:active, a:active {
 .bigGlowingButton {
     width: 8rem;
     height: 8rem;
-    background-color: rgb(var(--background));
+    background-color: rgb(var(--primaryShadow));
     border: none;
     border-radius: 4rem;
     position: relative;
@@ -450,7 +452,7 @@ button:active, a:active {
 }
 
 .hugeGlowingButton {
-    background-color: rgba(var(--background));
+    background-color: rgba(var(--primaryShadow));
     height: calc(min(60vmin, 16rem) + 1rem);
     width: calc(min(60vmin, 16rem) + 1rem);
     border-radius: calc(min(30vmin, 8rem) + 0.5rem);
@@ -491,8 +493,7 @@ button:active, a:active {
 }
 
 .smallGlowingButton:hover, .bigGlowingButton:hover, .hugeGlowingButton:hover {
-    font-weight: bold;
-    background: rgb(var(--primaryLight));
+    background: rgb(var(--primary));
 }
 
 .smallGlowingButton:active, .bigGlowingButton:active, .hugeGlowingButton:active {
